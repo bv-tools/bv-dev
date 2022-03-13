@@ -1,0 +1,17 @@
+name: deploy to firebase dev server live channel
+'on':
+  push:
+    branches:
+      - dev
+jobs:
+  build_and_deploy_to_dev_live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
+          channelId: live
+          projectId: dev-bv

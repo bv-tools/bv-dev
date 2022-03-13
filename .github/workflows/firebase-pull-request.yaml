@@ -1,0 +1,13 @@
+
+name: Deploy to Preview Channel on Dev Server
+'on': pull_request
+jobs:
+  test_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      #- run: npm ci && npm run build
+      #- run: npm test
