@@ -1,4 +1,4 @@
-namee: deploy to firebase dev server review channel
+name: deploy to firebase dev server review channel
 'on': 
   push: 
     branch:
