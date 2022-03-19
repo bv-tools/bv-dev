@@ -2,6 +2,6 @@
   "projects": {
     "dev": "dev-bv",
     "production": "prod-bv",
-    "default": "dev-bv"
+    "default": "prod-bv"
   }
 }
