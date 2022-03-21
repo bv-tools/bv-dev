@@ -1,4 +1,4 @@
-name: deploy to firebase dev server review channel
+name: Deploy to review channel of dev server
 'on': 
   push: 
     branch:
@@ -6,15 +6,25 @@ name: deploy to firebase dev server review channel
       - '!main'
       - '!dev'
 jobs:
-  build_and_deploy_to_dev_review:
+  build:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci && npm run build
+      - name: Clean install
+      - run: npm ci 
+      - name: Build
+      - run: npm run build
+  test:
+      - name: Test not implemented
+  deploy to review channel of dev:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.DEV_BV_FIREBASE_TOKEN }}'
           expires: 7d
-          projectId: dev-bv
+          projectId: '${{ secrets.DEV_PROJECT_ID }}'
+
+
+          #TODO: Add cypress tests
+          #TODO: Add jest tests
