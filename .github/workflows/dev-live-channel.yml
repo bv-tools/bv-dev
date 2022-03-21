@@ -4,7 +4,7 @@ name: Deploy to live channel of dev server
     branches:
       - dev
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,9 +12,9 @@ jobs:
       - run: npm ci 
       - name: Build
       - run: npm run build
-  add test steps:
+  test:
       - name: Test not implemented
-  Deploy to live channel of dev server:
+  deploy to live channel of dev server:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
