@@ -9,9 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Clean install
-      - run: npm ci 
+        run: npm ci 
       - name: Build
-      - run: npm run build
+        run: npm run build
   test:
       - name: Test not implemented
   deploy to live channel of dev server:
