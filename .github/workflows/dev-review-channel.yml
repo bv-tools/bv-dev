@@ -1,7 +1,7 @@
 name: Deploy to review channel of dev server
 'on': 
   push: 
-    branch:
+    branches:
       - '!release'
       - '!main'
       - '!dev'
@@ -18,6 +18,9 @@ jobs:
 #  test:
 #      - name: Test not implemented
   deploy:
+    name: Deploy to live channel of dev server
+    runs-on: ubuntu-latest
+    steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

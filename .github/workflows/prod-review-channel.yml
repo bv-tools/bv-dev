@@ -1,7 +1,7 @@
 name: Deploy to review channel of production server
 'on': 
   push: 
-    branch:
+    branches:
       - release
 jobs:
   build:
@@ -16,6 +16,9 @@ jobs:
 #  test:
 #      - name: Test not implemented
   deploy:
+    name: Deploy to review channel of production server
+    runs-on: ubuntu-latest
+    steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
