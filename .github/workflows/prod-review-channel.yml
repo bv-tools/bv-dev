@@ -13,9 +13,9 @@ jobs:
         run: npm ci 
       - name: Build
         run: npm run build
-  test:
-      - name: Test not implemented
-  deploy:
+#  test:
+#      - name: Test not implemented
+  deploy to review prod:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
