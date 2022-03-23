@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "dev-bv",
+    "production": "prod-bv",
+    "default": "prod-bv"
+  }
+}

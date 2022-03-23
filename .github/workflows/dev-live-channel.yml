@@ -1,0 +1,33 @@
+name: Deploy to live channel of dev server
+'on':
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Clean install
+        run: npm ci 
+      - name: Build
+        run: npm run build
+#  test:
+#      - name: Test not implemented
+  deploy:
+    name: Deploy to live channel of dev server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.DEV_BV_FIREBASE_TOKEN }}'
+          channelId: live
+          projectId: '${{ secrets.DEV_PROJECT_ID }}'
+
+
+          #TODO: Add cypress tests
+          #TODO: Add jest tests

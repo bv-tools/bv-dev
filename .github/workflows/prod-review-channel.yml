@@ -1,0 +1,33 @@
+name: Deploy to review channel of production server
+'on': 
+  push: 
+    branches:
+      - release
+jobs:
+  build:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Clean install
+        run: npm ci 
+      - name: Build
+        run: npm run build
+#  test:
+#      - name: Test not implemented
+  deploy:
+    name: Deploy to review channel of production server
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PROD_BV }}'
+          expires: 7d
+          projectId: '${{ secrets.PROD_PROJECT_ID }}'
+
+
+          #TODO: Add cypress tests
+          #TODO: Add jest tests

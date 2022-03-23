@@ -1,0 +1,18 @@
+
+name: Test pull request
+'on': pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: clean install
+        run: npm ci 
+      - name: build
+        run: npm run build
+#  test:
+#     - name: test not implemented
+
+
+          #TODO: Add cypress tests
+          #TODO: Add jest tests
