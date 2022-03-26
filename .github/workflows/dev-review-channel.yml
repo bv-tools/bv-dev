@@ -1,11 +1,11 @@
 name: Deploy to review channel of dev server
 'on': 
   push: 
-    branches:
-      - '!release'
-      - '!main'
-      - '!dev'
-      - '!hotfix'
+    branches-ignore:
+      - 'release'
+      - 'main'
+      - 'dev'
+      - 'hotfix'
 jobs:
   build:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
