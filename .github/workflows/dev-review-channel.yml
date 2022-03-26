@@ -19,7 +19,7 @@ jobs:
 #  test:
 #      - name: Test not implemented
   deploy:
-    name: Deploy to live channel of dev server
+    name: Deploy to review channel of dev server
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,8 +27,9 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.DEV_BV_FIREBASE_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEV_BV }}'
           expires: 7d
+          channelId: 'pr-${{ github.event.number }}-${{ github.event.pull_request.head.ref }}'
           projectId: '${{ secrets.DEV_PROJECT_ID }}'
 
 
